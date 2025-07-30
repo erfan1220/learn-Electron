@@ -1,0 +1,60 @@
+<div class="my-3 p-2 grid grid-cols-3 gap-x-4 gap-y-6">
+  <div *ngFor="let product of products; index as i">
+    <div class="card shadow-[0_0_8px_4px_rgba(0,0,0,0.25)]">
+      <div class="card-media">
+        <div class="w-full overflow-hidden flex justify-center items-center">
+          <img
+            src="download.jpg"
+            class="w-full h-40 transform hover:scale-110 transition duration-300 ease-in-out"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="card-body flex flex-col gap-1 p-2 h-45">
+        <div>
+          <div class="flex justify-start items-center">
+            <h4>testname</h4>
+          </div>
+          <div class="flex justify-start items-center">
+            <p class="text-gray-500">test description .....</p>
+          </div>
+        </div>
+      </div>
+      <hr class="text-gray-400" />
+      <div
+        [ngClass]="{'justify-center':hoveredIndex === i}"
+        class="card-footer h-10 flex items-center"
+        (mouseenter)="hoveredIndex  = i"
+        (mouseleave)="hoveredIndex  = -1"
+      >
+        <div class="flex p-2 gap-3" [ngClass]="{'hidden':hoveredIndex === i}">
+          <del>129,000 </del>
+          58000
+        </div>
+        @if (hoveredIndex === i) {
+        <div class="flex gap-4">
+          <button
+            class="text-white rounded-lg bg-red-600 hover:bg-red-700 p-1 px-4"
+          >
+            delete
+          </button>
+          <button
+            class="text-white rounded-lg bg-blue-600 hover:bg-blue-700 p-1 px-4"
+          >
+            update
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex justify-center items-center">
+  <button
+    class="outline-none m-4 p-2 px-5 content-center flex items-center gap-3 text-white rounded-lg bg-blue-600 hover:bg-blue-700"
+    (click)="add_phone()"
+  >
+    <mat-icon> add_circle </mat-icon>
+    Add Phone
+  </button>
+</div>

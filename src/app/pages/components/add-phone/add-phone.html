@@ -1,0 +1,37 @@
+<div
+  (click)="backward()"
+  class="relative top-1 left-2 w-10 h-10 rounded-full border border-gray-500 cursor-pointer flex items-center justify-center hover:bg-gray-200"
+>
+  <mat-icon class="pl-1">arrow_back_ios</mat-icon>
+</div>
+<form
+  action=""
+  [formGroup]="NewPhoneForm"
+  (ngSubmit)="onSubmit()"
+  class="p-2 mt-4"
+>
+  <div class="flex flex-col gap-5">
+    <div class="flex gap-3 items-stretch">
+      <div class="w-full">
+        <app-basic-info></app-basic-info>
+      </div>
+      <div class="w-full">
+        <app-adv-info></app-adv-info>
+      </div>
+    </div>
+
+    <div class="flex gap-5">
+      <div class="w-1/2 border border-solid border-black rounded-lg">specs</div>
+      <div class="w-1/2 flex justify-center items-center">
+        <button
+          type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2 px-10 rounded-lg"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- <app-error-toast [show]="" [error_text]="error_text"></app-error-toast> -->
