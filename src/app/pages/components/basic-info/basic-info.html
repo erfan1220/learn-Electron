@@ -1,16 +1,17 @@
 <div
-  class="grid grid-cols-2 border border-solid border-black p-4 py-8 gap-y-10 rounded-lg h-full"
+  class="grid grid-cols-2 border border-solid border-black p-4 py-8 gap-y-10 gap-x-3 rounded-lg h-full"
   [formGroup]="parent.form"
 >
   <div *ngFor="let label of labels">
     <label [for]="label">{{label.name}}</label>
     <input
-      (keypress)="onlyNumber($event)"
       type="text"
       [name]="label"
       [id]="label"
       [placeholder]="label.ph"
       [formControlName]="label.name"
+      (input)="onInput($event,label.name)"
+      (keypress)="handleKeyPress($event,label.name)"
       class="outline-none bg-gray-100 border border-solid border-gray-300 rounded-lg p-1 px-2 focus:bg-white focus:shadow-[0_0_8px_2px_rgba(0,0,0,0.15)] placeholder:text-gray-500"
     />
     <app-error-message
@@ -24,8 +25,9 @@
       id="brand"
       name="brand"
       class="bg-gray-100 rounded-lg border border-solid border-gray-300 outline-none text-center h-fit py-0.75 w-full"
+      (change)="onChange($event,0)"
     >
-      <option [value]="brand.brands_id" *ngFor="let brand of brands">
+      <option [value]="brand.id" *ngFor="let brand of brands">
         {{ brand.name }}
       </option>
     </select>
@@ -36,9 +38,10 @@
       id="Seller"
       name="Seller"
       class="bg-gray-100 rounded-lg border border-solid border-gray-300 outline-none text-center h-fit py-0.75 w-full"
+      (change)="onChange($event,1)"
     >
-      <option [value]="brand.brands_id" *ngFor="let brand of brands">
-        {{ brand.name }}
+      <option [value]="seller.id" *ngFor="let seller of sellers">
+        {{ seller.name }}
       </option>
     </select>
   </div>

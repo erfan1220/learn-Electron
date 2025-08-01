@@ -1,0 +1,11 @@
+<div
+  class="absolute top-6 text-white rounded-lg p-2 px-4 left-5 overflow-hidden transform transition-all duration-500 ease-in opacity-0 z-200"
+  [ngClass]="{
+    'opacity-100': show,
+    'hidden': !show,
+    'bg-black': !bg_color
+  }"
+  [style.background-color]="bg_color"
+>
+  <p>{{ error_text }}</p>
+</div>

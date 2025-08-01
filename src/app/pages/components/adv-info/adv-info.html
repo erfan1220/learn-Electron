@@ -8,6 +8,7 @@
     name="Name"
     id="Name"
     formControlName="name"
+    (input)="onInput($event)"
     class="border border-solid border-black rounded-lg p-1 px-2"
   />
   <app-error-message
@@ -20,28 +21,12 @@
     id="Description"
     rows="6"
     formControlName="Description"
+    (input)="onTextarea($event)"
     class="border border-solid border-black rounded-lg p-2 resize-none"
   ></textarea>
   <app-error-message
     [control]="parent.form.get('Description')"
     fieldName="Description"
   ></app-error-message>
-  <label
-    for="file-upload"
-    class="m-auto border border-dashed border-gray-500 w-20 h-20 flex justify-center items-center cursor-pointer text-green-500 font-bold"
-  >
-    <mat-icon> add_2</mat-icon>
-  </label>
-  <input
-    type="file"
-    id="file-upload"
-    multiple
-    accept="image/*"
-    class="hidden"
-    formControlName="image"
-  />
-  <app-error-message
-    [control]="parent.form.get('image')"
-    fieldName="image"
-  ></app-error-message>
+  <app-image (fileChosen)="reciveImage($event)"></app-image>
 </div>
