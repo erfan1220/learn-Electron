@@ -17,4 +17,8 @@ export class ProductService {
     const apiUrl = `http://localhost:5000/api/product/${productId}`;
     return this.http.delete<any>(apiUrl);
   }
+  updateProduct(id: number | null, body: any): Observable<any> {
+    const url = `http://localhost:5000/api/product/${id}`;
+    return this.http.put<any>(url, body);
+  }
 }

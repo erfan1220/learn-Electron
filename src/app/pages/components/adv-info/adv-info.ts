@@ -1,4 +1,11 @@
-import { Component, EventEmitter, inject, Input, Output, output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  output,
+} from '@angular/core';
 import {
   ControlContainer,
   FormGroupDirective,
@@ -19,15 +26,19 @@ import { Image } from '../image/image';
 })
 export class AdvInfo {
   @Output() adv = new EventEmitter<{ [key: string]: string | File | null }>();
-  @Input() advDetails : object = {}
-    ngOnChanges() {
-    console.log(
-      'advDetails input changed:',
-      JSON.stringify(this.advDetails, null, 2)
-    );
-  }
+  @Input() advDetails:
+    | { name: string; image: string; description: string }[]
+    | null = null;
 
   advInfo: { [key: string]: string | File | null } = {};
+
+  ngOnChanges() {
+    if (this.advDetails) {
+      this.advInfo['name'] = this.advDetails[0].name;
+      this.advInfo['Description'] = this.advDetails[0].description;
+      this.emitData();
+    }
+  }
 
   public parent: FormGroupDirective = inject(FormGroupDirective);
 

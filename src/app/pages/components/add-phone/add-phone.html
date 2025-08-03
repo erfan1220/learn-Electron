@@ -15,13 +15,13 @@
       <div class="w-full">
         <app-basic-info
           (basic)="recive_basics($event)"
-          [basicDetails]="basic"
+          [basicDetails]="basicInfo ? basicInfo : null"
         ></app-basic-info>
       </div>
       <div class="w-full">
         <app-adv-info
           (adv)="recive_adv($event)"
-          [advDetails]="adv"
+          [advDetails]="advInfo"
         ></app-adv-info>
       </div>
     </div>
@@ -32,16 +32,16 @@
       >
         <app-specification
           (specs)="recive_specs($event)"
-          [specDetails]="specs"
+          [inspecs]="specs"
         ></app-specification>
       </div>
       <div class="w-1/2 flex justify-center items-center">
         <button
           type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2 px-10 rounded-lg cursor-not-allowed"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2 px-10 rounded-lg cursor-not-allowed font-medium text-xl"
           [ngClass]="{'cursor-pointer' : NewPhoneForm.valid}"
         >
-          Add
+          {{btn_text}}
         </button>
       </div>
     </div>

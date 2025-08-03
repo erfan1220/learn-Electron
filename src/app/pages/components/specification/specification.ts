@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-specification',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './specification.html',
   styleUrl: './specification.css',
 })
@@ -12,6 +13,12 @@ export class Specification {
     name: string;
     value: string;
   }[] = [];
+  @Input() inspecs:
+    | {
+        name: string;
+        value: string;
+      }[]
+    | null = null;
   @Output() specs = new EventEmitter<
     {
       name: string;
@@ -21,12 +28,11 @@ export class Specification {
   show_error: boolean = false;
   error_text: string = '';
 
-  @Input() specDetails: object = {};
   ngOnChanges() {
-    console.log(
-      'specDetails input changed:',
-      JSON.stringify(this.specDetails, null, 2)
-    );
+    if (this.inspecs) {
+      this.specifications = this.inspecs;
+    }
+    this.emitData()
   }
 
   addSpecification() {

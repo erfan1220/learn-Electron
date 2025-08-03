@@ -16,11 +16,11 @@ export const PagesRoutes: Route[] = [
         loadComponent: () =>
           import('./components/add-phone/add-phone').then((m) => m.AddPhone),
       },
-      {
-        path: 'update',
-        loadComponent: () =>
-          import('./components/update-phone/update-phone').then((m) => m.UpdatePhone),
-      },
+      // {
+      //   path: 'update',
+      //   loadComponent: () =>
+      //     import('./components/update-phone/update-phone').then((m) => m.UpdatePhone),
+      // },
       {
         path: '**',
         redirectTo: 'main-page',

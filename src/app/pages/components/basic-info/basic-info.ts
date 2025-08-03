@@ -27,23 +27,16 @@ import { DataService } from '../../shared/services/data';
 })
 export class BasicInfo {
   @Output() basic = new EventEmitter<{ [key: string]: string }>();
-
-  @Input() basicDetails: object = {};
-  ngOnChanges() {
-    console.log(
-      'BasicInfo input changed:',
-      JSON.stringify(this.basicDetails, null, 2)
-    );
-  }
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['basicDetails'] && this.basicDetails) {
-  //     Object.keys(this.basicDetails).forEach((key) => {
-  //       if (this.parent.form.get(key)) {
-  //         this.parent.form.get(key)?.setValue(this.basicDetails[key]);
-  //       }
-  //     });
-  //   }
-  // }
+  @Input() basicDetails: Array<{
+    [key: string]: any;
+    id: number;
+    price: number;
+    stock: number;
+    brand_id: number;
+    discount: number;
+    shipping: boolean;
+    seller_id: number;
+  }> | null = null;
 
   labels: { ph: string; name: string }[] = [
     { ph: '12.2$', name: 'Price' },
@@ -53,6 +46,7 @@ export class BasicInfo {
   brands: { id: number; name: string }[] = [];
   sellers: { id: number; name: string }[] = [];
   freeShipping: boolean = false;
+
   basicInfo: { [key: string]: string } = {};
 
   public parent: FormGroupDirective = inject(FormGroupDirective);
@@ -72,6 +66,19 @@ export class BasicInfo {
     });
 
     this.DefaultValues();
+  }
+
+  ngOnChanges() {
+    if (this.basicDetails) {
+      this.freeShipping = this.basicDetails[0].shipping;
+      this.basicInfo['Brand'] = String(this.basicDetails[0].brand_id);
+      this.basicInfo['Seller'] = String(this.basicDetails[0].seller_id);
+      this.basicInfo['Discount'] = String(this.basicDetails[0].discount);
+      this.basicInfo['Price'] = String(this.basicDetails[0].price);
+      this.basicInfo['Stock'] = String(this.basicDetails[0].stock);
+      this.basicInfo['freeShipping'] = String(this.freeShipping);
+      this.emitData();
+    }
   }
 
   shipping() {

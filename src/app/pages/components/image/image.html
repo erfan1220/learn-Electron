@@ -15,12 +15,13 @@
 @if (selectedImage) {
 <div class="w-5/6 h-40 overflow-hidden m-auto relative">
   <img
+    [(ngModel)]="image_src"
     [src]="selectedImage"
     class="w-full h-full object-contain rounded"
     alt="Upload"
   />
   <button
-  type="button"
+    type="button"
     class="bg-red-600 hover:bg-red-700 text-white absolute top-0 right-0 cursor-pointer"
     (click)="removeImage()"
   >

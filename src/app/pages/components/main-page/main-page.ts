@@ -100,6 +100,7 @@ export class MainPage {
   }
 
   update(id: number) {
-    this.router.navigate(['/pages/update'], { queryParams: { id: id } });
+    // this.router.navigate(['/pages/update'], { queryParams: { id: id } });
+    this.router.navigate(['/pages/add-phone'], { queryParams: { id: id } });
   }
 }
